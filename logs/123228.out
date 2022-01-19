@@ -1,0 +1,61 @@
+Wed Jan 19 02:23:42 EST 2022
+Slurm nodes: evc1
+You were assigned 1 gpu(s)
+Please run `conda env list` to see a list of all available environments. Use
+`source activate <env>` to activate the environment '<env>'. 
+
+Currently Loaded Modules:
+  1) anaconda/anaconda3
+
+ 
+
+	[4mGPU0	mlx5_0	CPU Affinity	NUMA Affinity[0m
+GPU0	 X 	SYS	0,2,8,10	0-1
+mlx5_0	SYS	 X 		
+
+Legend:
+
+  X    = Self
+  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node
+  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)
+  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)
+  PIX  = Connection traversing at most a single PCIe bridge
+  NV#  = Connection traversing a bonded set of # NVLinks
+
+
+Namespace(arch='vgg16', checkpoint='checkpoint', dataset='cifar100', epochs=15, gamma=0.1, jobid='123228', logs='logs', lr=0.005, manualSeed=8703, momentum=0.9, schedule=[5, 10], test_batch=100, train_batch=128, weight_decay=0.0005, workers=4)
+==> Preparing dataset cifar100
+Files already downloaded and verified
+Testing...
+ -> Progress: 20 done!
+ -> Progress: 40 done!
+ -> Progress: 60 done!
+ -> Progress: 80 done!
+ -> Progress: 100 done!
+
+Test loss: 4.5000 
+Val accuracy: 0.93%
+==> Preparing dataset cifar100
+Files already downloaded and verified
+Traceback (most recent call last):
+  File "run_cifar.py", line 112, in <module>
+    main()
+  File "run_cifar.py", line 102, in main
+    model = training_loop(model=model, logger=logger, args=args, save_best=True)
+  File "/lustre/fs0/home/mtayyab/codes/mayachitra/lwf/trainer.py", line 85, in training_loop
+    _, trainloader, num_classes = get_cifar_sub_class(args.dataset, classes=args.task1, split='train', batch_size=args.train_batch, num_workers=args.workers)
+  File "/lustre/fs0/home/mtayyab/codes/mayachitra/lwf/datasets.py", line 217, in get_cifar_sub_class
+    dloader = data.DataLoader(dset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
+  File "/apps/anaconda/anaconda3/envs/pytorch-gpu/lib/python3.6/site-packages/torch/utils/data/dataloader.py", line 176, in __init__
+    sampler = RandomSampler(dataset)
+  File "/apps/anaconda/anaconda3/envs/pytorch-gpu/lib/python3.6/site-packages/torch/utils/data/sampler.py", line 66, in __init__
+    "value, but got num_samples={}".format(self.num_samples))
+ValueError: num_samples should be a positive integer value, but got num_samples=0
+
+real	0m13.077s
+user	0m8.480s
+sys	0m3.440s
+
+Ending script...
+Wed Jan 19 02:23:57 EST 2022
