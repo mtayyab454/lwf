@@ -18,10 +18,10 @@ New Task: Class 90 to 100
 
 Log file: logs/123230.out
 
-|                   | Old Task | New Task |
-|-------------------|----------|----------|
-| Old Task Training | 70.15%   | 0%       |
-| New Task Training | 69.83%   | 90.40%   |
+| Images Used       | Old Task Acc. | New Task Acc.|
+|-------------------|---------------|----------|
+| Old Task | 70.15%        | 0%       |
+| New Task | 69.83%        | 90.40%   |
 
 ```shell
 python run_cifar.py --t1-weight 0.1
@@ -30,10 +30,10 @@ python run_cifar.py --t1-weight 0.1
 ##### Training without LwF 
 
 
-|                   | Old Task | New Task |
-|-------------------|----------|----------|
-| Old Task Training | 70.15%   | 0%       |
-| New Task Training | 63.10%   | 91.40%   |
+| Images Used      | Old Task Acc.| New Task Acc.|
+|------------------|----------|----------|
+| Old Task | 70.15%   | 0%       |
+| New Task | 63.10%   | 91.40%   |
 
 ```shell
 python run_cifar.py --t1-weight 0
