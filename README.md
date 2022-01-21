@@ -8,27 +8,33 @@ Dataset Used: CIFAR100
 
 Model: VGG16
 
-Task1: Class 1 to 90
+Old Task: Class 1 to 90
 
-Task2: Class 90 to 100
+New Task: Class 90 to 100
 
-<div align=center><img src="img/framework.png" height = "60%" width = "70%"/></div>
+<div align=center><img src="img/model.PNG" height = "60%" width = "70%"/></div>
 
-##### 1. Resnet56
+##### Training with LwF 
 
-| Flops         | Parameters      | Accuracy |
-|---------------|-----------------|----------|
-|89.80M(64.22%) | 0.32M(62.97%)   | 92.71%   | 
+Log file: logs/123230.out
+
+|                   | Old Task | New Task |
+|-------------------|----------|----------|
+| Old Task Training | 70.15%   | 0%       |
+| New Task Training | 69.83%   | 90.40%   |
 
 ```shell
-python run_cifar.py \
---jobid resnet56_test \
---arch resnet56 \
---dataset cifar10 \
---compress_rate :[6,4,4,6,4,4,4,4,4,4,4,4,4,13,4,10,6,4,4,12,18,16,4,15,4,16,4,12,7,13,4,15,4,18,4,12,4,32,26,36,16,32,13,29,23,32,16,36,10,23,13,20,10,13,7] \
---l2_weight 0.001 \
---add_bn True \
---epochs 120 \
---schedule 30 60 90 \
---lr 0.01
+python run_cifar.py --t1-weight 0.1
+```
+
+##### Training without LwF 
+
+
+|                   | Old Task | New Task |
+|-------------------|----------|----------|
+| Old Task Training | 70.15%   | 0%       |
+| New Task Training | 63.10%   | 91.40%   |
+
+```shell
+python run_cifar.py --t1-weight 0
 ```
