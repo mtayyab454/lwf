@@ -172,7 +172,7 @@ def training_loop_subtask(model, logger, args, save_best=False):
     _, testloader_t2, num_classes = get_cifar_sub_class(args.dataset, classes=args.task2['class_id'], split='test', batch_size=args.test_batch, num_workers=args.workers)
     _, testloader_t1, num_classes = get_cifar_sub_class(args.dataset, classes=args.task1['class_id'], split='test', batch_size=args.test_batch, num_workers=args.workers)
 
-    optimizer = optim.SGD(model.parameters(), lr=lr, momentum=args.momentum, weight_decay=args.weight_decay)
+    optimizer = optim.SGD([{'params': model.features.parameters()}, {'params': model.classifiers[0].parameters()}, {'params': model.classifiers[1].parameters(), 'lr': args.lr_t1}], lr=lr, momentum=args.momentum, weight_decay=args.weight_decay)
     num_param = get_num_parameters(model)
 
     print('    Total params: %.2fM' % (num_param / 1000000.0))

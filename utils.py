@@ -181,8 +181,11 @@ class Logger(object):
 def adjust_learning_rate(optimizer, lr, epoch, schedule, gamma):
     if epoch in schedule:
         lr *= gamma
-        for param_group in optimizer.param_groups:
-            param_group['lr'] = lr
+        for i, param_group in enumerate(optimizer.param_groups):
+            clr = param_group['lr']
+            param_group['lr'] = clr * gamma
+
+            print('New lr for parameter group:', i, ' -> ',clr * gamma)
 
     return lr
 
