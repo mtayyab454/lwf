@@ -199,8 +199,9 @@ def training_loop_subtask(model, logger, args, save_best=False):
 
         print('\nKeys: ', logger.keys)
         print('Training: ', train_stats)
-        print('Testing New Task: ', test_stats_t2)
         print('Testing Old Task: ', test_stats_t1)
+        print('Testing New Task: ', test_stats_t2)
+        print('%.1f, %.1f' % (test_stats_t1[1], test_stats_t2[1]))
         print('Best Acc: ', best_acc)
 
         logger.append([lr, train_stats, test_stats_t2, test_stats_t1])
